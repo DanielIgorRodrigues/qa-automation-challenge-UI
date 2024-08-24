@@ -1,0 +1,22 @@
+{
+  "name": "qa-automation-challenge-ui",
+  "version": "1.0.0",
+  "description": "Repositório criado para o desafio técnico de automação de testes. Inclui a definição e automação de cenários de teste para a aplicação Serverest, com foco na validação de funcionalidades críticas do sistema. Implementação realizada utilizando práticas recomendadas de automação e documentação clara para execução dos testes.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielIgorRodrigues/qa-automation-challenge-UI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielIgorRodrigues/qa-automation-challenge-UI/issues"
+  },
+  "homepage": "https://github.com/DanielIgorRodrigues/qa-automation-challenge-UI#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.5.0"
+  }
+}
