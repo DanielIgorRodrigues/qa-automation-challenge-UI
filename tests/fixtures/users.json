@@ -9,6 +9,6 @@
         "nome": "Gandalf o Branco",
         "email": "gandalf@mithrandir.com",
         "password": "pass123",
-        "administrador": "false"
+        "administrador": "true"
     }
 }

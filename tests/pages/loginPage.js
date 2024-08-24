@@ -9,7 +9,7 @@ class LoginPage {
     }
   
     async go() {
-      await this.page.goto('https://front.serverest.dev/login');
+      await this.page.goto('/');
       await expect(this.page).toHaveTitle(/Front - ServeRest/)
     }
   

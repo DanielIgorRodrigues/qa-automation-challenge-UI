@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
-const { base_api } = require('../fixtures/env')
+
+const base_api = 'https://serverest.dev'
 
 //função para cadastrar um novo usuário através de API
 async function createUser(request, data) {

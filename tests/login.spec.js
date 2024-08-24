@@ -21,4 +21,23 @@ test.describe('Login com sucesso', () => {
         await expect(page).toHaveURL('/home');
         await expect(page.getByRole("heading", {name: 'Serverest Store'})).toBeVisible()
     });
+
+    test('Login de usuário admin com credenciais válidas', async ({ page, request }) => {
+
+        // garantindo que os dados de acesso do usuário sempre estarão disponíveis.
+        await ensureUser(request, data.AdminUser)
+
+        const loginPage = new LoginPage(page)    
+
+        //Acessando a página da aplicação.
+        await loginPage.go()
+
+        //Preenchendo os campos email e senha e realizando o login.
+        await loginPage.login(data.AdminUser.email, data.AdminUser.password)
+
+        //Validando o acesso à aplicação admin com sucesso.
+        await expect(page).toHaveURL('/admin/home');
+        await expect(page.getByText('Este é seu sistema para administrar seu ecommerce.')).toBeVisible()
+        //expect(page.getByRole("", {class: `Este é seu sistema para administrar seu ecommerce.`})).toBeVisible()
+    });
 });
