@@ -4,7 +4,7 @@ const LoginPage = require('./pages/loginPage')
 const data = require('./fixtures/users.json')
 
 test.describe('Login com sucesso', () => {
-    test.only('Login de usuário comum com credenciais válidas', async ({ page, request }) => {
+    test('Login de usuário comum com credenciais válidas', async ({ page, request }) => {
 
         // garantindo que os dados de acesso do usuário sempre estarão disponíveis.
         await ensureUser(request, data.commonUser)
@@ -35,8 +35,9 @@ test.describe('Login com sucesso', () => {
         //Preenchendo os campos email e senha e realizando o login.
         await loginPage.login(data.AdminUser.email, data.AdminUser.password)
 
-        //Validando o acesso à aplicação com sucesso.
+        //Validando o acesso à aplicação admin com sucesso.
         await expect(page).toHaveURL('/admin/home');
-        await expect(page.getByRole("heading", {name: 'Serverest Store'})).toBeVisible()
+        await expect(page.getByText('Este é seu sistema para administrar seu ecommerce.')).toBeVisible()
+        //expect(page.getByRole("", {class: `Este é seu sistema para administrar seu ecommerce.`})).toBeVisible()
     });
 });

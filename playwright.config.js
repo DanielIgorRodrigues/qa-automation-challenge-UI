@@ -31,7 +31,6 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     baseURL: 'https://front.serverest.dev/',
-    baseAPI: 'https://serverest.dev',
     video: 'on'
   },
 
