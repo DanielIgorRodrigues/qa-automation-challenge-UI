@@ -15,7 +15,6 @@ async function deleteUser(request, idUser) {
 }
 
 export async function ensureUser(request, data) {
-
     const response = await request.get(`${base_api}/usuarios`)
     let users = await response.json()
     users = users.usuarios

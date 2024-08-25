@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { ensureUser } from "./utils/helpers";
-const LoginPage = require('./pages/loginPage')
+import { LoginPage } from "./pages/loginPage"
+
 const data = require('./fixtures/users.json')
 
 test.describe('Login com sucesso', () => {
@@ -38,6 +39,24 @@ test.describe('Login com sucesso', () => {
         //Validando o acesso à aplicação admin com sucesso.
         await expect(page).toHaveURL('/admin/home');
         await expect(page.getByText('Este é seu sistema para administrar seu ecommerce.')).toBeVisible()
-        //expect(page.getByRole("", {class: `Este é seu sistema para administrar seu ecommerce.`})).toBeVisible()
     });
 });
+
+test.describe('falha no login', () => {
+    test('tentativa de login com senha inválida', async ({ page, request }) => {
+
+        await ensureUser(request, data.IncorrectUser)
+
+        const loginPage = new LoginPage(page)    
+
+        await loginPage.go()
+        await loginPage.login(data.IncorrectUser.email, 'senhaInvalida')
+
+        const alertMessage = await page.locator('//div[contains(@class, "alert")]/span').textContent()
+
+        expect(alertMessage).toBe('Email e/ou senha inválidos')
+
+        await page.waitForTimeout(5000)
+    })
+
+})

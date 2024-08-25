@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test"
 
-class LoginPage {
+export class LoginPage {
     constructor(page) {
       this.page = page;
       this.emailInput = 'input[data-testid="email"]';
@@ -18,7 +18,4 @@ class LoginPage {
       await this.page.fill(this.passwordInput, password);
       await this.page.click(this.loginButton);
     }
-  }
-  
-  module.exports = LoginPage;
-  
+  }  
