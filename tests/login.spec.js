@@ -6,7 +6,6 @@ const data = require('./fixtures/users.json')
 
 test.describe('Login com sucesso', () => {
     test('Login de usuário comum com credenciais válidas', async ({ page, request }) => {
-
         // garantindo que os dados de acesso do usuário sempre estarão disponíveis.
         await ensureUser(request, data.commonUser)
 
@@ -24,7 +23,6 @@ test.describe('Login com sucesso', () => {
     });
 
     test('Login de usuário admin com credenciais válidas', async ({ page, request }) => {
-
         // garantindo que os dados de acesso do usuário sempre estarão disponíveis.
         await ensureUser(request, data.AdminUser)
 
@@ -44,7 +42,6 @@ test.describe('Login com sucesso', () => {
 
 test.describe('falha no login', () => {
     test('tentativa de login com senha inválida', async ({ page, request }) => {
-
         await ensureUser(request, data.IncorrectUser)
 
         const loginPage = new LoginPage(page)    
@@ -55,8 +52,5 @@ test.describe('falha no login', () => {
         const alertMessage = await page.locator('//div[contains(@class, "alert")]/span').textContent()
 
         expect(alertMessage).toBe('Email e/ou senha inválidos')
-
-        await page.waitForTimeout(5000)
-    })
-
-})
+    });
+});
