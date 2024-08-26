@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test"
 const { MESSAGES } = require('../fixtures/messages');
 
-export class HomeAdmin {
+export class HomeAdminPage {
     constructor(page) {
         this.page = page;
         this.logOutButton = 'button[data-testid="logout"]';
@@ -9,7 +9,6 @@ export class HomeAdmin {
 
     async validateLogin(data) {
         await expect(this.page).toHaveURL('/admin/home');
-        console.log(MESSAGES.adminWelcome)
         await expect(this.page.getByText(MESSAGES.adminWelcome + data.nome)).toBeVisible();
         await expect(this.page.getByText(MESSAGES.messageAdminWelcome)).toBeVisible();
     }

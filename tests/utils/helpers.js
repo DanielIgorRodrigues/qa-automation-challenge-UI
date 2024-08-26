@@ -2,8 +2,6 @@ import { expect } from "@playwright/test";
 
 const base_api = 'https://serverest.dev'
 
-
-
 //função para cadastrar um novo usuário através de API
 async function createUser(request, data) {
     const newUser = await request.post(`${base_api}/usuarios/`, { data })
@@ -26,7 +24,6 @@ async function queryUserExist(request, email) {
 
 export async function ensuredUser(request, data) {
     const user = await queryUserExist(request, data.email)
-    console.log(user)
     if (user) {
         deleteUser(request, user._id)
     }

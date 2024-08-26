@@ -13,7 +13,7 @@ export class LoginPage {
 
   async gologin() {
     await this.page.goto('/');
-    await expect(this.page).toHaveTitle(/Front - ServeRest/);
+    await expect(this.page).toHaveTitle(MESSAGES.pageTitle);
   };
 
   async login(email, password) {
@@ -24,8 +24,6 @@ export class LoginPage {
 
   async goToRegisterPage() {
     await this.page.click(this.registrationButton);
-    await expect(this.page).toHaveURL('/cadastrarusuarios');
-    await expect(this.page.getByRole('heading')).toHaveText(/Cadastro/);
   };
 
   async validateLoginErrorMessage() {

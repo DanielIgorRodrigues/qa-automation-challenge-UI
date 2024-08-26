@@ -1,8 +1,6 @@
 import { expect } from "@playwright/test";
 const { MESSAGES } = require('../fixtures/messages');
-import { HomeAdmin } from "./homeAdmin";
 
-const homeAdmin = new HomeAdmin();
 
 export class RegisterPage {
     constructor(page) {
@@ -20,7 +18,10 @@ export class RegisterPage {
         await this.page.fill(this.passwordInput, data.password);     
         await this.page.check(this.adminCheckbox);
         await this.page.click(this.registrationButton);
-
-        await homeAdmin.validateLogin()
     };
+
+    async validateRegisterPage() {
+        await expect(this.page).toHaveURL('/cadastrarusuarios');
+        await expect(this.page.getByRole('heading')).toHaveText(MESSAGES.registerPageTittle);
+    }
 };
