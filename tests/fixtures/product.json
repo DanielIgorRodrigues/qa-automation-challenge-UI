@@ -1,0 +1,8 @@
+{
+    "product1": {
+        "nome": "teste1",
+        "preco": "123",
+        "descricao": "teste",
+        "quantidade": "3"
+    }
+}
