@@ -16,5 +16,11 @@
         "email": "legolas@reinofloresta.com",
         "password": "pass123",
         "administrador": "true"
+    },
+    "NewUser": {
+        "nome": "Aragorn filho de Arathon",
+        "email": "aragorn@gondor.com",
+        "password": "pass123",
+        "administrador": "false"
     }
 }
