@@ -4,7 +4,8 @@ const MESSAGES = {
     adminWelcome: 'Bem Vindo  ',
     pageTitle: 'Front - ServeRest',
     commumPageTittle: 'Serverest Store',
-    registerPageTittle: 'Cadastro'
+    registerPageTittle: 'Cadastro',
+    shopListTittle: 'Lista de Compras'
 };
 
 module.exports = { MESSAGES };
