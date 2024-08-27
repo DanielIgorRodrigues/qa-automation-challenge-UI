@@ -91,3 +91,25 @@ export async function ensuredProduct(request, product) {
 
     await deleteNewUser(request, tokenUser.email);
 }
+
+export async function deleteProductByName(request, product) {
+    const token = await getToken(request);
+
+    const findResponse = await request.get(`${base_api}/produtos?nome=${product.nome}`);
+    let products = await findResponse.json();
+
+    products = products.produtos || [];
+    let existingProduct = products.find(p => p.nome === product.nome);
+    let productId = existingProduct ? existingProduct._id : null;
+
+    if (productId) {
+        await request.delete(`${base_api}/produtos/${productId}`, {
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
+    };
+
+    await deleteNewUser(request, tokenUser.email);
+}

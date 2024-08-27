@@ -1,8 +1,14 @@
 {
-    "product1": {
-        "nome": "teste1",
-        "preco": "123",
-        "descricao": "teste",
+    "apiProductRegister": {
+        "nome": "Produto API",
+        "preco": "110",
+        "descricao": "Produto registrado por api",
+        "quantidade": "3"
+    },
+    "manualProductRegister": {
+        "nome": "Produto Manual",
+        "preco": "150",
+        "descricao": "produto registrado pela tela admin/cadastrarprodutos",
         "quantidade": "3"
     }
 }

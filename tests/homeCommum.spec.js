@@ -22,13 +22,13 @@ test.describe('Compras', () => {
     test('inclusão de produto na lista de compras', async ({ request }) => {
         randomUser = generateRandomUser();
         await ensuredUser(request, randomUser);
-        await ensuredProduct(request, product.product1);
+        await ensuredProduct(request, product.apiProductRegister);
 
         await loginPage.gologin();
         await loginPage.login(randomUser.email, randomUser.password);
         
         await homeCommumPage.validateLogin();
 
-        await homeCommumPage.addToShopListAndValidate(product.product1.nome);        
+        await homeCommumPage.addToShopListAndValidate(product.apiProductRegister.nome);        
     });
 });
