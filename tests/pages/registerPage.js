@@ -12,6 +12,7 @@ export class RegisterPage {
         this.registrationButton = 'button[data-testid="cadastrar"]';
     };
 
+    // Método para realizar o cadastro de um usuário administrador
     async adminUserRegistration(data) {
         await this.page.fill(this.nameInput, data.nome);
         await this.page.fill(this.emailInput, data.email);
@@ -20,6 +21,7 @@ export class RegisterPage {
         await this.page.click(this.registrationButton);
     };
 
+    // Método para validar que a página de registro foi carregada corretamente
     async validateRegisterPage() {
         await expect(this.page).toHaveURL('/cadastrarusuarios');
         await expect(this.page.getByRole('heading')).toHaveText(MESSAGES.registerPageTittle);

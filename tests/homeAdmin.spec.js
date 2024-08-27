@@ -5,7 +5,7 @@ import { HomeAdminPage } from "./pages/homeAdminPage";
 import { ProductRegistrationPage } from "./pages/productRegistrationPage";
 import { ListProductPage } from "./pages/listProductPage";
 
-const product = require('./fixtures/product.json')
+const product = require('./fixtures/product.json') 
 
 let randomUser;
 let loginPage;
@@ -14,6 +14,7 @@ let homeAdminPage;
 let productRegistrationPage;
 
 test.beforeEach(({ page }) => {
+    // Inicializa as páginas necessárias para o teste
     loginPage = new LoginPage(page);
     homeAdminPage = new HomeAdminPage(page);
     productRegistrationPage = new ProductRegistrationPage(page);
@@ -21,25 +22,26 @@ test.beforeEach(({ page }) => {
 })
 
 test.afterEach(async ({ request }) => {
+    // Exclui o usuário e o produto criado durante o teste garantindo a limpeza da base
     await deleteNewUser(request, randomUser.email)
     await deleteProductByName(request, product.manualProductRegister)
 })
 
 test.describe('Cadastro Produto', () => {
     test('cadastro de um novo produto pelo sistema de administrador', async ({ page, request }) => {
-        randomUser = generateRandomUser(true);
-
-        await ensuredUser(request, randomUser);
+        randomUser = generateRandomUser(true); // Gera um usuário administrador aleatório
+        await ensuredUser(request, randomUser); // cria o usuário no sistema via api
         
-        await loginPage.gologin();
+        // Realiza o login com o usuário administrador
+        await loginPage.gologin(); 
         await loginPage.login(randomUser.email, randomUser.password);
         
-        await homeAdminPage.validateLogin(randomUser);
+        await homeAdminPage.validateLogin(randomUser); // Valida que o login foi bem-sucedido
 
-        await page.click('a[data-testid="cadastrarProdutos"]')
-        await productRegistrationPage.validateAccessProductRegistrationPage()
-        await productRegistrationPage.registerProduct(product.manualProductRegister);     
-        await listProductPage.validateRegistratedProduct(product.manualProductRegister);
+        await homeAdminPage.accessingProductPegistrationPage() // Navega para a página de cadastro de produtos
+        await productRegistrationPage.validateAccessProductRegistrationPage() // Valida que a página de cadastro de produtos foi carregada corretamente
+        await productRegistrationPage.registerProduct(product.manualProductRegister); // Realiza o cadastro do produto     
+        await listProductPage.validateRegistratedProduct(product.manualProductRegister); // Valida que o produto foi registrado e está na lista de produtos
         
     });
 });

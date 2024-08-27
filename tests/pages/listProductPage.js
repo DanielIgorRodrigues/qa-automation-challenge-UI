@@ -5,6 +5,7 @@ export class ListProductPage {
         this.page = page;
     };
 
+    // Método para validar se um produto registrado aparece na lista de produtos
     async validateRegistratedProduct(product) {
         await expect(this.page).toHaveURL('admin/listarprodutos');
         await expect(this.page.getByRole('heading')).toHaveText('Lista dos Produtos');

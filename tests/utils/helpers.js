@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 const base_api = 'https://serverest.dev'
 let tokenUser;
 
-
+// Função para gerar um usuário aleatório, podendo ser administrador
 export function generateRandomUser(isAdmin = false) {
     return {
         nome: faker.person.fullName(),
@@ -13,16 +13,19 @@ export function generateRandomUser(isAdmin = false) {
     };
 };
 
+// Função para criar um novo usuário via API
 async function createUser(request, data) {
     const newUser = await request.post(`${base_api}/usuarios/`, { data });
     expect(newUser.ok()).toBeTruthy();
 };
 
+// Função para deletar um usuário via API
 async function deleteUser(request, idUser) {
     const deleteUser = await request.delete(`${base_api}/usuarios/${idUser}`);
     expect(deleteUser.ok()).toBeTruthy();
 };
 
+// Função para verificar se um usuário com determinado e-mail já existe
 async function queryUserExist(request, email) {
     const response = await request.get(`${base_api}/usuarios`);
     let users = await response.json();
@@ -30,6 +33,7 @@ async function queryUserExist(request, email) {
     return users.find(u => u.email === email);
 };
 
+// Função para garantir que o usuário não existe e, se não existir, cria-o
 export async function ensuredUser(request, data) {
     let user = await queryUserExist(request, data.email);
     while (user) {
@@ -39,6 +43,7 @@ export async function ensuredUser(request, data) {
     await createUser(request, data);
 };
 
+// Função para deletar um novo usuário criado
 export async function deleteNewUser(request, email) {
     const user = await queryUserExist(request, email);
 
@@ -47,6 +52,7 @@ export async function deleteNewUser(request, email) {
     };
 };
 
+// Função para obter um token de autenticação para um usuário administrador
 export async function getToken(request) {
     tokenUser = generateRandomUser(true);
     await ensuredUser(request, tokenUser);
@@ -61,6 +67,7 @@ export async function getToken(request) {
     return token;
 };
 
+// Função para garantir que um produto específico não existe e, se não existir, cria-o
 export async function ensuredProduct(request, product) {
     const token = await getToken(request);
 
@@ -92,6 +99,7 @@ export async function ensuredProduct(request, product) {
     await deleteNewUser(request, tokenUser.email);
 }
 
+// Função para deletar um produto pelo nome
 export async function deleteProductByName(request, product) {
     const token = await getToken(request);
 
