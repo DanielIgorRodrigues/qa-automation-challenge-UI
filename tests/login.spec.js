@@ -20,14 +20,13 @@ test.afterEach(async ({ request }) => {
 })
 
 test.describe('Login com sucesso', () => {
-    test('Login de usuário comum com credenciais válidas', async ({ page, request }) => {
+    test('Login de usuário comum com credenciais válidas', async ({ request }) => {
         randomUser = generateRandomUser();
         
         await ensuredUser(request, randomUser);
 
         await loginPage.gologin();
         await loginPage.login(randomUser.email, randomUser.password);
-        await page.waitForTimeout(5000)
         await homeCommumPage.validateLogin();
     });
 

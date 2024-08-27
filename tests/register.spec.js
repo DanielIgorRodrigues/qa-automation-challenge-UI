@@ -32,7 +32,6 @@ test.describe('Cadastro de usuários', () => {
         await homeAdminPage.validateLogin(randomUser);
         
         await homeAdminPage.logout();
-        
         await loginPage.login(randomUser.email, randomUser.password);
         await homeAdminPage.validateLogin(randomUser);
     });
