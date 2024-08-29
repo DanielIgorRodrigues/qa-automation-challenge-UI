@@ -25,6 +25,10 @@ Antes de configurar e executar os testes, certifique-se de ter o seguinte instal
     yarn install
    ```
 
+   ```bash
+    npx playwright install
+   ```
+
 ## Executando os Testes
 
 **Executar Todos os Testes**:
