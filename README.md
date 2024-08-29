@@ -8,7 +8,7 @@ Para este desafio foi utilizado o [Playwright](https://playwright.dev/).
 
 Antes de configurar e executar os testes, certifique-se de ter o seguinte instalado em seu ambiente:
 
-- [Node.js](https://nodejs.org/) (versão 14 ou superior)
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
 
 ## Configuração do Projeto
